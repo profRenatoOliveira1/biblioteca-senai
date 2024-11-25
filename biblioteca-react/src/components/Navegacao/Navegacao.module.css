@@ -1,0 +1,59 @@
+.navbar {
+    background-color: var(--primary-color);
+    border-bottom: 1px solid #e9ecef;
+}
+
+.listNavbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.listNavbar li {
+    list-style: none;
+}
+
+.listNavbar a {
+    color: var(--white-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.navbarTexts {
+    color: var(--white-color);
+}
+
+.navbarTexts:hover {
+    color: var(--white-color);
+}
+
+.profilePicture {
+    width: 40px;
+    height: 40px;
+    margin-left: 1rem;
+    border-radius: 50%;
+}
+
+/* Remove a "setinha" que fica abaixo*/
+:global(.dropdown-toggle)::after {
+    content: none;
+}
+
+:global(.dropdown-menu.show) {
+    background-color: var(--primary-color);
+    border: 2px solid #fff;
+}
+
+:global(.dropdown-item) {
+    color: var(--white-color);
+}
+
+:global(.dropdown-item):hover {
+    color: var(--primary-color);
+}
+
+:global(.dropdown-divider) {
+    background-color: var(--white-color);
+}

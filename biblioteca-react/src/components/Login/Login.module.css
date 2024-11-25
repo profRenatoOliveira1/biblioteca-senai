@@ -1,0 +1,39 @@
+.ctnLogin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 800px;
+    height: 50vh;
+
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+}
+
+.ctnLogin h1 {
+    color: var(--darker-color);
+    font-size: 2rem;
+    margin: 0;
+}
+
+.formLogin {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 75%;
+}
+
+.formLogin input {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+}
+
+.formLogin input[type="submit"] {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    font-weight: bold;
+    cursor: pointer;
+}

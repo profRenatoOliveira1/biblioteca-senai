@@ -1,0 +1,24 @@
+.ctnPHome {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 8fr 1fr;
+    grid-template-areas: 
+        "header header header"
+        "main main main"
+        "footer footer footer";
+
+    height: 100vh;
+}
+
+.navegacao {
+    grid-area: header;
+}
+
+.home {
+    grid-area: main;
+    margin: auto auto;
+}
+
+.rodape {
+    grid-area: footer;
+}

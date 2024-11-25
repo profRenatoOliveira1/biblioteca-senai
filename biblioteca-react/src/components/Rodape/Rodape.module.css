@@ -1,0 +1,7 @@
+.rodape{
+    background-color: var(--primary-color);
+}
+
+.rodape p {
+    color: var(--white-color);
+}

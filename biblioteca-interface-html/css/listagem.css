@@ -1,0 +1,56 @@
+:root {
+    --cabecalho: #5B5B5B;
+    --linhas: #363636;
+    --bordas: #EFEFEF;
+}
+
+table {
+    width: 80%;
+    margin: auto auto;
+    margin-top: 2%;
+}
+
+table tr:hover {
+    background-color: var(--bordas);
+    color: var(--linhas);
+}
+
+table tr:hover img {
+    filter: brightness(1.2);
+    transition: transform 0.3s, filter 0.3s;
+}
+
+table tr:hover td {
+    border-color: var(--linhas);
+}
+
+table th {
+    background-color: var(--cabecalho);
+    color: white;
+    height: 3rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+table tr {
+    background-color: var(--linhas);
+    color: white;
+    height: 2.5rem;
+}
+
+th, td {
+    border: 1px solid var(--bordas);
+    text-align: center;
+}
+
+td img {
+    filter: invert(0.9);
+    width: 25%;
+    margin: 0.4rem;
+}
+
+td img:hover {
+    filter: invert(0);
+    width: 25%;
+    margin: 0.4rem;
+}

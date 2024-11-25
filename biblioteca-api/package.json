@@ -1,0 +1,32 @@
+{
+  "name": "biblioteca",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx tsc && node ./dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "José Mateus R, Lucas Hideki Miyazaki, João Pedro Palomares",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^22.5.5",
+    "@types/pg": "^8.11.10",
+    "nodemon": "^3.1.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.13.0"
+  }
+}

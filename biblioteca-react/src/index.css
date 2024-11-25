@@ -1,0 +1,20 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+:root {
+    --primary-color: #027368;
+    --secondary-color: #038C7F;
+    --success-color: #28a745;
+    --info-color: #17a2b8;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #04BFAD;
+    --dark-color: #01403A;
+    --darker-color: #012626;
+    --white-color: #fff;
+    --black-color: #000;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
