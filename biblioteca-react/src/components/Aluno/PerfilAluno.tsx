@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { SERVER_ROUTES } from '../../appConfig';
 import AlunoRequests from '../../fetch/AlunoRequests';
 import estilo from './PerfilAluno.module.css';
+import { RiEdit2Fill } from "react-icons/ri";
+import { MdSaveAlt } from "react-icons/md";
 
 interface PerfilAlunoProps {
   classname?: string;
@@ -34,22 +36,34 @@ function PerfilAluno({ classname }: PerfilAlunoProps) {
 
           <div className={estilo.ctnInfoAluno}>
             <p>E-mail:</p>
-            <input type="email" value={`${infoAluno.email}`} disabled />
+            <input type="email" value={`${infoAluno.email}`} name='editItem' disabled />
           </div>
 
           <div className={estilo.ctnInfoAluno}>
             <p>Celular:</p>
-            <input type="number" value={`${infoAluno.celular}`} disabled />
+            <input type="number" value={`${infoAluno.celular}`} name='editItem' disabled />
           </div>
 
           <div className={estilo.ctnInfoAluno}>
             <p>Data Nascimento:</p>
-            <input type="date" value={`${new Date(infoAluno.dataNascimento).toISOString().split('T')[0]}`} disabled />
+            <input type="date" value={`${new Date(infoAluno.dataNascimento).toISOString().split('T')[0]}`} name='editItem' disabled />
           </div>
 
           <div className={estilo.ctnInfoAluno}>
             <p>Endereço:</p>
-            <input type="text" value={`${infoAluno.endereco}`} disabled />
+            <input type="text" value={`${infoAluno.endereco}`} name='editItem' disabled />
+          </div>
+          <div className={estilo.actionButtons}>
+            <RiEdit2Fill
+              className={`${estilo.editButton} ${estilo.actionButton}`}
+              onClick={() => {
+                const inputs = document.getElementsByName(`editItem`);
+                inputs.forEach(input => (input as HTMLInputElement).disabled = !(input as HTMLInputElement).disabled);
+              }}
+            />
+            <MdSaveAlt 
+              className={`${estilo.editButton} ${estilo.actionButton}`}
+            />
           </div>
         </div>
       )}
