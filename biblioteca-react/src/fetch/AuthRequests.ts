@@ -71,6 +71,7 @@ class AuthRequests {
         localStorage.removeItem("email");
         localStorage.removeItem("ra");
         localStorage.removeItem("isAuth");
+        localStorage.removeItem("profile");
     }
 
     getProfilePicture() {

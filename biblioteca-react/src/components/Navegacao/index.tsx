@@ -149,7 +149,7 @@ function Navegacao({ classname }: NavegacaoProps) {
                                 {userMenuOpen && (
                                     <div className={style.submenu}>
                                         <Nav.Link href="#action/3.1">Atualizar Senha</Nav.Link>
-                                        <Nav.Link href="#action/3.2">Perfil</Nav.Link>
+                                        <Nav.Link href="/perfil/aluno">Perfil</Nav.Link>
                                         <Nav.Link onClick={handleLogout}>Sair</Nav.Link>
                                     </div>
                                 )}

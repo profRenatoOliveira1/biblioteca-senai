@@ -3,6 +3,7 @@ const SERVER_ROUTES = {
     ATUALIZAR_ALUNO: '/atualizar/aluno',
     REMOVER_ALUNO: '/remover/aluno',
     LISTAR_ALUNOS: '/listar/alunos',
+    LISTAR_ALUNO_RA: '/listar/aluno/:ra',
 
     NOVO_LIVRO: '/novo/livro',
     ATUALIZAR_LIVRO: '/atualizar/livro',

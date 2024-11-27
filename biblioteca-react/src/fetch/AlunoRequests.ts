@@ -33,6 +33,12 @@ class AlunoRequests {
     async cadastrarAluno(data: FormData): Promise<boolean> {
         const url = this.serverUrl + this.routeNovoAluno;
 
+        console.log(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: data
+        });
+
         const response = await fetch(url, {
             method: 'POST',
             body: data
@@ -58,6 +64,25 @@ class AlunoRequests {
         if (response.ok) {
             const jsonAlunos = await response.json();
             return jsonAlunos;
+        }
+
+        return [];
+    }
+
+    async listarAlunoRA(): Promise<JSON | []> {
+        const ra = localStorage.getItem('ra');
+        if (!ra) {
+            throw new Error('RA is null');
+        }
+        const url = this.serverUrl + SERVER_ROUTES.LISTAR_ALUNO_RA.replace(':ra', ra);
+
+        const response = await fetch(url, {
+            method: 'GET'
+        });
+
+        if (response.ok) {
+            const jsonAluno = await response.json();
+            return jsonAluno;
         }
 
         return [];

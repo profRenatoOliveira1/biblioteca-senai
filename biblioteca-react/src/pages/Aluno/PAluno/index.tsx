@@ -1,6 +1,6 @@
-import Navegacao from "../../components/Navegacao";
-import CadastroAluno from "../../components/Aluno/CadastroAluno";
-import Rodape from "../../components/Rodape";
+import Navegacao from "../../../components/Navegacao";
+import CadastroAluno from "../../../components/Aluno/CadastroAluno";
+import Rodape from "../../../components/Rodape";
 import estilo from "./PCadastroAluno.module.css";
 
 function PCadastroAluno() {

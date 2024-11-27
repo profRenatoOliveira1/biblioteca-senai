@@ -229,6 +229,42 @@ export class Aluno {
     }
 
     /**
+     * Retorna um aluno com base no RA fornecido
+     * 
+     * @param ra RA do aluno a ser buscado
+     * @returns Objeto Aluno ou null se não encontrado
+     */
+    static async listarAlunoRA(ra: string): Promise<Aluno | null> {
+        try {
+            const querySelectAlunoRA = `SELECT * FROM aluno WHERE ra = '${ra}';`;
+
+            const respostaBD = await database.query(querySelectAlunoRA);
+
+            if (respostaBD.rows.length > 0) {
+                const aluno = respostaBD.rows[0];
+
+                let novoAluno = new Aluno(
+                    aluno.nome,
+                    aluno.sobrenome,
+                    aluno.data_nascimento,
+                    aluno.endereco,
+                    aluno.email,
+                    aluno.celular
+                );
+                novoAluno.setIdAluno(aluno.id_aluno);
+                novoAluno.setRA(aluno.ra);
+                novoAluno.setFoto(aluno.nome_arquivo);
+
+                return novoAluno;
+            }
+        } catch (error) {
+            console.log(`Erro ao acessar o modelo: ${error}`);
+            return null;
+        }
+        return null;
+    }
+
+    /**
      * Cadastra um novo aluno no banco de dados
      * @param aluno Objeto Aluno contendo as informações a serem cadastradas
      * @returns Boolean indicando se o cadastro foi bem-sucedido
