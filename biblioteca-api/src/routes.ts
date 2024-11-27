@@ -18,6 +18,7 @@ router.get(SERVER_ROUTES.LISTAR_ALUNO_RA, AlunoController.alunoRA);
 router.post(SERVER_ROUTES.NOVO_ALUNO, upload.single('foto'), AlunoController.cadastrar);
 router.delete(SERVER_ROUTES.REMOVER_ALUNO, AlunoController.remover);
 router.put(SERVER_ROUTES.ATUALIZAR_ALUNO, AlunoController.atualizar);
+router.put(SERVER_ROUTES.ATUALIZAR_SENHA_ALUNO, AlunoController.atualizarSenha);
 
 //CRUD Livro
 router.get(SERVER_ROUTES.LISTAR_LIVROS, LivroController.todos);

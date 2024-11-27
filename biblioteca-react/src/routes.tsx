@@ -3,6 +3,7 @@ import PLogin from './pages/PLogin';
 import PHome from './pages/PHome';
 import PCadastroAluno from './pages/Aluno/PAluno';
 import PPerfilAluno from './pages/Aluno/PPerfilAluno';
+import PAtualizarSenhaAluno from './pages/Aluno/PAtualizarSenhaAluno';
 
 function AppRouter() {
     return(
@@ -13,6 +14,7 @@ function AppRouter() {
 
                 <Route path="/cadastro/aluno" element={<PCadastroAluno />} />
                 <Route path="/perfil/aluno" element={<PPerfilAluno />} />
+                <Route path="/atualizar/senha/aluno" element={<PAtualizarSenhaAluno />} />
             </Routes>
         </Router>
     );

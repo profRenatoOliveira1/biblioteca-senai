@@ -8,6 +8,9 @@ interface AlunoDTO {
     endereco?: string;
     email?: string;
     celular: string;
+    ra?: string;
+    senha?: string;
+    novaSenha?: string;
 }
 
 /**
@@ -24,11 +27,9 @@ class AlunoController extends Aluno {
     static async todos(req: Request, res: Response) {
         try {
             const listaDeAlunos = await Aluno.listarAlunos();
-
             res.status(200).json(listaDeAlunos);
         } catch (error) {
             console.log(`Erro ao acessar método herdado: ${error}`);
-
             res.status(400).json("Erro ao recuperar as informações do Aluno");
         }
     }
@@ -43,11 +44,36 @@ class AlunoController extends Aluno {
         try {
             const ra = (req.params.ra as string);
             const aluno = await Aluno.listarAlunoRA(ra);
-
             res.status(200).json(aluno);
         } catch (error) {
             console.log(`Erro ao acessar método herdado: ${error}`);
+            res.status(400).json("Erro ao recuperar as informações do Aluno");
+        }
+    }
 
+    /**
+     * Atualiza a senha de um aluno.
+     * 
+     * @param req - O objeto de solicitação HTTP, contendo o corpo da solicitação com `ra`, `senha` e `novaSenha`.
+     * @param res - O objeto de resposta HTTP.
+     * 
+     * @returns Uma resposta HTTP com uma mensagem de sucesso ou erro.
+     * 
+     * @throws Retorna uma resposta HTTP com status 400 e uma mensagem de erro se ocorrer uma exceção.
+     */
+    static async atualizarSenha(req: Request, res: Response) {
+        try {
+            const { ra, senhaAtual, novaSenha } = req.body;
+
+            const respostaClasse = await Aluno.atualizarSenhaAluno(ra, senhaAtual, novaSenha);
+
+            if(respostaClasse) {
+                return res.status(200).json({ mensagem: "Senha atualizada com sucesso!" });
+            } else {
+                return res.status(400).json({ mensagem: "Erro ao atualizar a senha do aluno." });
+            }
+        } catch (error) {
+            console.log(`Erro ao acessar método herdado: ${error}`);
             res.status(400).json("Erro ao recuperar as informações do Aluno");
         }
     }

@@ -1,4 +1,4 @@
-import { HashPwd } from "../components/utils/HashPwd";
+import { HashPwd } from "../utils/HashPwd";
 import { SERVER_ROUTES } from "../appConfig";
 
 class AuthRequests {
@@ -29,29 +29,54 @@ class AuthRequests {
 
         if (response.ok) {
             const json = await response.json();
-            console.log(json);
-            this.persistToken({token: json.token, 
-                username: json.aluno.nome, 
-                email: json.aluno.email, 
+            this.persistToken({
+                token: json.token,
+                username: json.aluno.nome,
+                email: json.aluno.email,
                 ra: json.aluno.ra,
-                profile: { filename: json.aluno.filename, mimetype: json.aluno.mimetype, data: json.aluno.data }});
+                profile: { filename: json.aluno.filename, mimetype: json.aluno.mimetype, data: json.aluno.data }
+            });
         }
 
         return response.ok;
     }
 
+    async atualizarSenhaAluno(aluno: {
+        senhaAtual: string,
+        novaSenha: string,
+        ra: string
+    }) {
+        const url = this.serverUrl + SERVER_ROUTES.ATUALIZAR_SENHA_ALUNO;
+        const data = {
+            senhaAtual: HashPwd.hash(aluno.senhaAtual),
+            novaSenha: HashPwd.hash(aluno.novaSenha),
+            ra: aluno.ra
+        };
+
+        const response = await fetch(url, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(data)
+        });
+
+        return response.ok;
+    }
+
     persistToken({
-        token, 
-        username, 
-        email, 
+        token,
+        username,
+        email,
         ra,
         profile
-    }: { 
-        token: string; 
-        username: string; 
-        email: string; 
-        ra: string; 
-        profile?: { filename: string; mimetype: string; data: string }; 
+    }: {
+        token: string;
+        username: string;
+        email: string;
+        ra: string;
+        profile?: { filename: string; mimetype: string; data: string };
     }) {
         localStorage.setItem("token", token);
         localStorage.setItem("username", username);
@@ -63,7 +88,6 @@ class AuthRequests {
         }
         localStorage.setItem("isAuth", "true");
     }
-    
 
     removeToken() {
         localStorage.removeItem("token");

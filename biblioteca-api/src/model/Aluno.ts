@@ -365,4 +365,30 @@ export class Aluno {
             return queryResult;
         }
     }
+
+    /**
+     * Atualiza a senha de um aluno no banco de dados.
+     *
+     * @param ra - O RA (Registro Acadêmico) do aluno.
+     * @param senhaAtual - A senha atual do aluno.
+     * @param novaSenha - A nova senha que será definida para o aluno.
+     * @returns Um booleano indicando se a atualização foi bem-sucedida.
+     * @throws Lança um erro se houver um problema ao acessar o banco de dados.
+     */
+    static async atualizarSenhaAluno(ra: string, senhaAtual: string, novaSenha: string): Promise<Boolean> {
+        try {
+            const queryUpdateSenhaAluno = `UPDATE aluno SET senha = '${novaSenha}' WHERE ra = '${ra}' AND senha = '${senhaAtual}'`;
+        
+            const respostaBD = await database.query(queryUpdateSenhaAluno);
+
+            if(respostaBD.rowCount && respostaBD.rowCount > 0) {
+                return true;
+            } 
+
+            return false;
+        } catch (error) {
+            console.log(`Erro ao acessar o modelo: ${error}`);
+            return false;   
+        }
+    }
 }

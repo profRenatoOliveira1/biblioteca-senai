@@ -1,0 +1,52 @@
+.ctnPainelAtualizarSenha {
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid var(--dark-color);
+    border-radius: 10px;
+    
+    width: 80%;
+    height: 50vh;
+
+    margin: auto auto!important;
+    background-color: var(--gray-color);
+}
+
+.ctnPainelAtualizarSenha h1 {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.ctnPainelAtualizarSenha form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 60%;
+}
+
+.ctnPainelAtualizarSenha form label {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+}
+
+.ctnPainelAtualizarSenha input {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+.ctnPainelAtualizarSenha input[type="submit"] {
+    margin-top: 2rem;
+
+    height: 5vh;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+}
