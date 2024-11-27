@@ -45,6 +45,24 @@
     margin-top: 1rem;
 }
 
+.painelPrincipal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.actionButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 25vh;
+    width: 5vw;
+}
+
 .actionButton {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    margin: 0.75rem 0;
 }
