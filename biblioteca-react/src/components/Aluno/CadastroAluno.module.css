@@ -1,6 +1,7 @@
 .formCadastroAluno {
     display: flex;
     width: 90%;
+    height: 70vh;
     margin: 1.5rem auto;
     flex-direction: column;
     align-items: center;
@@ -23,6 +24,20 @@
     flex-direction: column;
 }
 
+.inputGroup input {
+    height: 5vh;
+}
+
+.inputFields {
+    width: 70vw;
+    margin: auto auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .doubleInput input {
     width: 100%; /* Garante que o input ocupe o espaço total do container */
     padding: 5px;
@@ -32,8 +47,10 @@
 }
 
 .btnEnviar {
-    width: 80%;
+    width: 75%;
     height: 8vh;
+    margin-top: 2rem;
+    font-size: 1.5rem;
 
     background-color: var(--primary-color);
     color: var(--white-color);
@@ -49,8 +66,8 @@
 }
 
 .fotoPerfil {
-    width: 120px; /* Defina o tamanho desejado */
-    height: 120px;
+    width: 180px; /* Defina o tamanho desejado */
+    height: 180px;
     border-radius: 50%;
     object-fit: cover; /* Garante que a imagem preencha o círculo */
     cursor: pointer; /* Indica que é clicável */

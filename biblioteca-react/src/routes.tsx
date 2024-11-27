@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PLogin from './pages/PLogin';
 import PHome from './pages/PHome';
-import PCadastroAluno from './pages/PAluno/PCadastroAluno';
+import PCadastroAluno from './pages/PAluno';
 
 function AppRouter() {
     return(

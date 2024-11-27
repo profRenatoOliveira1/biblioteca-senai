@@ -6,9 +6,9 @@ import estilo from "./PCadastroAluno.module.css";
 function PCadastroAluno() {
     return (
         <div className={estilo.ctnPCadastroAluno}>
-            <Navegacao classname={estilo.navegacao} />
+            <Navegacao classname={estilo.navegacao}/>
             <CadastroAluno classname={estilo.cadastroAluno} />
-            <Rodape className={estilo.rodape} />
+            <Rodape className={estilo.rodape}/>
         </div>
     );
 }

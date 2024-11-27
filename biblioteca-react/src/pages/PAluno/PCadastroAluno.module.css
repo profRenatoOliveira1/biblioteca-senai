@@ -16,7 +16,7 @@
 
 .cadastroAluno {
     grid-area: main;
-    margin: auto auto;
+    margin: auto 0;
 }
 
 .rodape {

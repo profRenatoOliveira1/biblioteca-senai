@@ -76,115 +76,108 @@ function CadastroAluno({ classname }: CadastroAlunoProps) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className={estilo.formCadastroAluno}>
-            <h1>Cadastro Aluno</h1>
-                    <div className={estilo.inputFoto}>
-                        <label htmlFor="fotoUpload">
-                            <img
-                                src={formData.foto ? URL.createObjectURL(formData.foto) : imagemPadrao}
-                                alt="Foto do Aluno"
-                                className={estilo.fotoPerfil}
-                            />
-                            <input
-                                id="fotoUpload"
-                                type="file"
-                                accept="image/*"
-                                onChange={handleFileChange}
-                                style={{ display: "none" }}
-                            />
-                        </label>
-                    <div className={estilo.doubleInput}>
-                        <div className={estilo.inputGroup}>
-                            <label>
-                                Nome <br />
-                                <input
-                                    type="text"
-                                    name="nome"
-                                    placeholder="Insira o nome"
-                                    value={formData.nome}
-                                    onChange={handleChange}
-                                />
-                            </label>
+        <div className={classname}>
+            <form onSubmit={handleSubmit} className={estilo.formCadastroAluno}>
+                <h1>Cadastro Aluno</h1>
+                <div className={estilo.inputFoto}>
+                    <label htmlFor="fotoUpload">
+                        <img
+                            src={formData.foto ? URL.createObjectURL(formData.foto) : imagemPadrao}
+                            alt="Foto do Aluno"
+                            className={estilo.fotoPerfil}
+                        />
+                        <input
+                            id="fotoUpload"
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                            style={{ display: "none" }}
+                        />
+                    </label>
+                    <div className={estilo.inputFields}>
+                        <div className={estilo.doubleInput}>
+                            <div className={estilo.inputGroup}>
+                                <label>
+                                    Nome <br />
+                                    <input
+                                        type="text"
+                                        name="nome"
+                                        placeholder="Insira o nome"
+                                        value={formData.nome}
+                                        onChange={handleChange}
+                                    />
+                                </label>
+                            </div>
+                            <div className={estilo.inputGroup}>
+                                <label>
+                                    Sobrenome <br />
+                                    <input
+                                        type="text"
+                                        name="sobrenome"
+                                        placeholder="Insira o sobrenome"
+                                        value={formData.sobrenome}
+                                        onChange={handleChange}
+                                    />
+                                </label>
+                            </div>
                         </div>
-                        <div className={estilo.inputGroup}>
-                            <label>
-                                Sobrenome <br />
-                                <input
-                                    type="text"
-                                    name="sobrenome"
-                                    placeholder="Insira o sobrenome"
-                                    value={formData.sobrenome}
-                                    onChange={handleChange}
-                                />
-                            </label>
+                        <div className={estilo.doubleInput}>
+                            <div className={estilo.inputGroup}>
+                                <label>
+                                    Data de Nascimento <br />
+                                    <input
+                                        type="date"
+                                        name="data_nascimento"
+                                        value={formData.data_nascimento}
+                                        onChange={handleChange}
+                                    />
+                                </label>
+                            </div>
+                            <div className={estilo.inputGroup}>
+                                <label>
+                                    Celular <br />
+                                    <input
+                                        type="number"
+                                        name="celular"
+                                        placeholder='Informe o número de celular (apenas os números)'
+                                        value={formData.celular}
+                                        onChange={handleChange}
+                                    />
+                                </label>
+                            </div>
                         </div>
+                        <div className={estilo.doubleInput}>
+                            <div className={estilo.inputGroup}>
+                                <label>
+                                    Endereço
+                                    <input
+                                        type="text"
+                                        name="endereco"
+                                        placeholder='Informe o endereço'
+                                        value={formData.endereco}
+                                        onChange={handleChange}
+                                    />
+                                </label>
+                            </div>
+                            <div className={estilo.inputGroup}>
+                                <label>
+                                    Email
+                                    <input
+                                        type="text"
+                                        name="email"
+                                        placeholder='Informe o endereço de e-mail'
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                    />
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" className={estilo.btnEnviar}>Enviar</button>
                     </div>
-                    <div className={estilo.doubleInput}>
-                        <div className={estilo.inputGroup}>
-                            <label>
-                                Data de Nascimento <br />
-                                <input
-                                    type="date"
-                                    name="data_nascimento"
-                                    value={formData.data_nascimento}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
-                        <div className={estilo.inputGroup}>
-                            <label>
-                                Celular <br />
-                                <input
-                                    type="number"
-                                    name="celular"
-                                    placeholder='Informe o número de celular (apenas os números)'
-                                    value={formData.celular}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
-                    </div>
-                    <div className={estilo.doubleInput}>
-                        <div className={estilo.inputGroup}>
-                            <label>
-                                Endereço
-                                <input
-                                    type="text"
-                                    name="endereco"
-                                    placeholder='Informe o endereço'
-                                    value={formData.endereco}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
-                        <div className={estilo.inputGroup}>
-                            <label>
-                                Email
-                                <input
-                                    type="text"
-                                    name="email"
-                                    placeholder='Informe o endereço de e-mail'
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
-                    </div>
-
-
-
-
-                    {/* <label>
-                Foto
-                <input
-                    type="file"
-                    accept="image/*" // Aceita qualquer imagem
-                    onChange={handleFileChange}
-                />
-            </label> */}
-                    <button type="submit" className={estilo.btnEnviar}>Enviar</button>
                 </div>
-        </form>
+            </form>
+        </div>
     );
 }
 
