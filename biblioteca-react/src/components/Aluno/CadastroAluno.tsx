@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import InputMask from 'react-input-mask';
 import AlunoRequests from '../../fetch/AlunoRequests';
 import estilo from './CadastroAluno.module.css';
 import imagemPadrao from '../../assets/user-profile-nobg.png';
@@ -63,7 +64,7 @@ function CadastroAluno({ classname }: CadastroAlunoProps) {
         payload.append('data_nascimento', formData.data_nascimento);
         payload.append('endereco', formData.endereco);
         payload.append('email', formData.email);
-        payload.append('celular', formData.celular);
+        payload.append('celular', formData.celular.replace(/\D/g, ''));
         if (formData.foto) {
             payload.append('foto', formData.foto); // Adiciona o arquivo ao FormData
         }
@@ -143,8 +144,9 @@ function CadastroAluno({ classname }: CadastroAlunoProps) {
                             <div className={estilo.inputGroup}>
                                 <label>
                                     Celular <br />
-                                    <input
-                                        type="number"
+                                    <InputMask
+                                        mask="(99) 99999-9999"
+                                        type="text"
                                         name="celular"
                                         placeholder='Informe o número de celular (apenas os números)'
                                         value={formData.celular}

@@ -5,11 +5,16 @@
 
 .toggleButton,
 .toggleButton:hover,
-:global(.btn-primary) {
-    background-color: var(--primary-color);
+.toggleButton:focus,
+.toggleButton:active,
+:global(.btn-primary:focus),
+:global(.btn-primary:active) {
+    background-color: var(--primary-color) !important;
     border: none;
     margin-left: 2%;
     font-size: 2rem;
+    box-shadow: none; /* Remove a sombra azul padrão */
+    outline: none;    /* Remove o contorno padrão */
 }
 
 .listNavbar {

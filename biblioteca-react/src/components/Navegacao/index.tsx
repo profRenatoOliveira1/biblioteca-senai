@@ -108,7 +108,7 @@ function Navegacao({ classname }: NavegacaoProps) {
                                 {openSection === "livros" && (
                                     <div className={style.submenu}>
                                         <Nav.Link href="/cadastro/livro">Cadastro</Nav.Link>
-                                        <Nav.Link href="#">Listagem</Nav.Link>
+                                        <Nav.Link href="/lista/livros">Listagem</Nav.Link>
                                     </div>
                                 )}
                             </Nav.Item>

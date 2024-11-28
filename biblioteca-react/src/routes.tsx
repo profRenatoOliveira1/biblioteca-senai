@@ -5,6 +5,7 @@ import PCadastroAluno from './pages/Aluno/PCadastroAluno';
 import PPerfilAluno from './pages/Aluno/PPerfilAluno';
 import PAtualizarSenhaAluno from './pages/Aluno/PAtualizarSenhaAluno';
 import PCadastroLivro from './pages/Livros/PCadastroLivro';
+import PListagemLivros from './pages/Livros/PListagemLivros';
 
 function AppRouter() {
     return(
@@ -20,6 +21,7 @@ function AppRouter() {
 
                 {/* LIVRO */}
                 <Route path="/cadastro/livro" element={<PCadastroLivro />} />
+                <Route path="/lista/livros" element={<PListagemLivros />} />
             </Routes>
         </Router>
     );

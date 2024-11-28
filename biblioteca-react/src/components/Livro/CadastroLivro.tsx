@@ -1,4 +1,5 @@
 import { useState } from "react";
+import InputMask from 'react-input-mask';
 import LivroRequests from "../../fetch/LivroRequests";
 import imagemPadrao from "../../assets/book-default.png";
 import estilo from "./CadastroLivro.module.css";
@@ -141,7 +142,8 @@ function CadastroLivro({ classname }: CadastroLivroProps) {
                                 </label>
                                 <label>
                                     ISBN <br />
-                                    <input
+                                    <InputMask
+                                        mask={["9999999999", "999-9999999999"]}
                                         type="text"
                                         name="isbn"
                                         placeholder="Insira o ISBN"

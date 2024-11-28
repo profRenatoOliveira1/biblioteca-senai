@@ -17,6 +17,18 @@ class LivroRequests {
 
         return response.ok;
     }
+
+    async listarLivros(): Promise<any> {
+        const url = this.serverUrl + this.routeListarLivros;
+
+        const response = await fetch(url);
+
+        if (response.ok) {
+            return response.json();
+        } else {
+            return [];
+        }
+    }
 }
 
 export default new LivroRequests();
