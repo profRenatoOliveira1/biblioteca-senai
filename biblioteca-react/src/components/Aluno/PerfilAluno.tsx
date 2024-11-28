@@ -5,15 +5,49 @@ import estilo from './PerfilAluno.module.css';
 import { RiEdit2Fill } from "react-icons/ri";
 import { MdSaveAlt } from "react-icons/md";
 
+/**
+ * Propriedades para o componente PerfilAluno.
+ * 
+ * @interface PerfilAlunoProps
+ * @property {string} [classname] - Classe CSS opcional para estilização do componente.
+ */
 interface PerfilAlunoProps {
   classname?: string;
 }
 
+/**
+ * Componente PerfilAluno exibe as informações do aluno e permite a edição de alguns campos.
+ *
+ * @param {PerfilAlunoProps} props - As propriedades do componente.
+ * @param {string} props.classname - Classe CSS para estilização do componente.
+ *
+ * @returns {JSX.Element} O componente PerfilAluno.
+ *
+ * @component
+ *
+ * @example
+ * <PerfilAluno classname="perfil-aluno" />
+ *
+ * @remarks
+ * Este componente utiliza hooks do React como useState e useEffect para gerenciar o estado e os efeitos colaterais.
+ * Ele também faz uma requisição assíncrona para buscar os dados do aluno e exibe um formulário com as informações.
+ * A foto do aluno pode ser alterada através de um input do tipo file.
+ * 
+ * @todo
+ * Implementar a lógica de edição e salvamento das informações do aluno.
+ */
 function PerfilAluno({ classname }: PerfilAlunoProps) {
   const [infoAluno, setInfoAluno] = useState<any>();
   const [serverUrl, setServerUrl] = useState<string>('');
   const [foto, setFoto] = useState<File>();
 
+  /**
+   * Hook de efeito que busca os dados do aluno e a URL do servidor.
+   * 
+   * Este efeito é executado apenas uma vez, após a montagem do componente.
+   * Ele faz uma requisição assíncrona para obter os dados do aluno através da função `listarAlunoRA` 
+   * e define esses dados no estado `infoAluno`. Além disso, define a URL do servidor no estado `serverUrl`.
+   */
   useEffect(() => {
     const fetchData = async () => {
       const resposta = await AlunoRequests.listarAlunoRA();
@@ -24,6 +58,15 @@ function PerfilAluno({ classname }: PerfilAlunoProps) {
     fetchData();
   }, []);
 
+  /**
+   * Manipulador de evento para mudança de arquivo.
+   * 
+   * @param event - O evento de mudança de arquivo.
+   * 
+   * Esta função é chamada quando um arquivo é selecionado pelo usuário.
+   * Ela obtém o primeiro arquivo da lista de arquivos selecionados e, 
+   * se houver um arquivo, define esse arquivo como a foto selecionada.
+   */
   const handleFileChange = (event: any) => {
     const file = event.target.files[0];
     if (file) {

@@ -4,11 +4,28 @@ import LivroRequests from "../../fetch/LivroRequests";
 import imagemPadrao from "../../assets/book-default.png";
 import estilo from "./CadastroLivro.module.css";
 
+/**
+ * Propriedades para o componente CadastroLivro.
+ *
+ * @interface CadastroLivroProps
+ * @property {string} [classname] - Classe CSS opcional para estilização do componente.
+ */
 interface CadastroLivroProps {
     classname?: string;
 }
 
-function CadastroLivro({ classname }: CadastroLivroProps) {
+/**
+ * Componente de cadastro de livro.
+ *
+ * @param {CadastroLivroProps} props - As propriedades do componente.
+ * @param {string} props.classname - Classe CSS para estilização do componente.
+ *
+ * @returns {JSX.Element} O formulário de cadastro de livro.
+ *
+ * O formulário utiliza o estado local para gerenciar os dados do livro e envia uma requisição
+ * para cadastrar o livro ao ser submetido.
+ */
+function CadastroLivro({ classname }: CadastroLivroProps): JSX.Element {
     const [formData, setFormData] = useState<{
         titulo: string;
         autor: string;
@@ -34,11 +51,24 @@ function CadastroLivro({ classname }: CadastroLivroProps) {
     });
     const statusLivroLista = ['Disponível', 'Emprestado', 'Indisponível'];
 
+    /**
+     * Manipula a mudança de valor em um campo de entrada ou seleção.
+     *
+     * @param {React.ChangeEvent<HTMLInputElement | HTMLSelectElement>} event - O evento de mudança que contém o nome e o valor do campo.
+     */
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
     }
 
+    /**
+     * Manipula a mudança de arquivo no input de upload.
+     * 
+     * @param event - O evento de mudança do input de arquivo.
+     * 
+     * Esta função extrai o primeiro arquivo selecionado do evento e,
+     * se houver um arquivo, atualiza o estado do formulário com o novo arquivo de imagem de capa.
+     */
     const handleFileChange = (event: any) => {
         const file = event.target.files[0];
         if (file) {
@@ -46,6 +76,17 @@ function CadastroLivro({ classname }: CadastroLivroProps) {
         }
     };
 
+    /**
+     * Manipula o envio do formulário de cadastro de livro.
+     *
+     * @param {React.FormEvent<HTMLFormElement>} event - O evento de envio do formulário.
+     *
+     * @returns {Promise<void>} - Uma Promise que resolve quando o livro é cadastrado ou rejeita em caso de erro.
+     *
+     * O payload é criado a partir dos dados do formulário e enviado para a função `cadastrarLivro` da classe `LivroRequests`.
+     * Se o cadastro for bem-sucedido, uma mensagem de sucesso é exibida e a página é recarregada.
+     * Caso ocorra um erro, uma mensagem de erro é exibida no console e um alerta é mostrado ao usuário.
+     */
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 

@@ -1,5 +1,12 @@
 import { SERVER_ROUTES } from "../appConfig";
 
+/**
+ * Classe responsável por gerenciar as requisições relacionadas aos alunos.
+ *
+ * @remarks
+ * Esta classe fornece métodos para cadastrar, listar, atualizar e remover alunos,
+ * utilizando as rotas definidas no servidor e as URLs obtidas das variáveis de ambiente.
+ */
 class AlunoRequests {
     private serverUrl: string;
     private routeNovoAluno: string;
@@ -70,6 +77,14 @@ class AlunoRequests {
         return [];
     }
 
+    /**
+     * Fetches the student data based on the RA (Registro Acadêmico) stored in localStorage.
+     * 
+     * @returns {Promise<JSON | []>} A promise that resolves to the student data in JSON format if the request is successful, 
+     * or an empty array if the request fails.
+     * 
+     * @throws {Error} Throws an error if the RA is not found in localStorage.
+     */
     async listarAlunoRA(): Promise<JSON | []> {
         const ra = localStorage.getItem('ra');
         if (!ra) {

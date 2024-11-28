@@ -3,7 +3,16 @@ import Login from "../../components/Login";
 import Rodape from "../../components/Rodape";
 import estilo from "./PLogin.module.css";
 
-function PLogin() {
+/**
+ * Componente de página de login.
+ * 
+ * Este componente renderiza a página de login, incluindo a navegação, 
+ * o formulário de login e o rodapé.
+ * 
+ * @component
+ * @returns {JSX.Element} O componente de página de login.
+ */
+function PLogin(): JSX.Element {
     return (
         <div className={estilo.ctnPLogin}>
             <Navegacao classname={estilo.navegacao} />

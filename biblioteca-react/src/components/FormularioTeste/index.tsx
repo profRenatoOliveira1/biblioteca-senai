@@ -1,6 +1,14 @@
 import { useState } from 'react';
 
-function FormularioTeste() {
+/**
+ * Componente de formulário para teste.
+ * 
+ * Este componente renderiza um formulário com campos para nome, sobrenome, data de nascimento,
+ * endereço, email, celular e foto. Os dados do formulário são gerenciados usando o hook `useState`.
+ * 
+ * @returns {JSX.Element} O formulário de teste.
+ */
+function FormularioTeste(): JSX.Element {
     const [formData, setFormData] = useState<{
         nome: string;
         sobrenome: string;
@@ -18,8 +26,13 @@ function FormularioTeste() {
         celular: '99012349876',
         foto: null // Inicialmente `null`
     });
-
-    // Função para atualizar campos de texto
+    
+    /**
+     * Manipula a mudança de valor em um campo de entrada de formulário.
+     *
+     * @param {React.ChangeEvent<HTMLInputElement>} event - O evento de mudança do campo de entrada.
+     * @returns {void}
+     */
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormData({
@@ -28,7 +41,15 @@ function FormularioTeste() {
         });
     };
 
-    // Função para lidar com o arquivo enviado
+    /**
+     * Manipulador de evento para a mudança de arquivo em um input do tipo file.
+     * 
+     * @param event - Evento de mudança do input de arquivo.
+     * 
+     * Este manipulador verifica se há arquivos selecionados no input e, se houver,
+     * atualiza o estado do formulário com o primeiro arquivo selecionado.
+     * O arquivo é salvo como um objeto do tipo File na propriedade `foto` do estado do formulário.
+     */
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
             setFormData({
@@ -38,6 +59,19 @@ function FormularioTeste() {
         }
     };
 
+    /**
+     * Manipula o envio do formulário de forma assíncrona.
+     *
+     * @param {React.FormEvent<HTMLFormElement>} event - O evento de envio do formulário.
+     *
+     * @returns {Promise<void>} - Uma promessa que resolve quando o envio do formulário é concluído.
+     *
+     * @remarks
+     * Esta função previne o comportamento padrão do envio do formulário,
+     * cria um objeto FormData com os dados do formulário e envia uma requisição
+     * POST para o endpoint especificado. Se houver uma foto no formulário, ela
+     * também será adicionada ao FormData.
+     */
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 

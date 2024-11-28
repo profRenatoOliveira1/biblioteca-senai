@@ -4,11 +4,37 @@ import AlunoRequests from '../../fetch/AlunoRequests';
 import estilo from './CadastroAluno.module.css';
 import imagemPadrao from '../../assets/user-profile-nobg.png';
 
+/**
+ * Propriedades para o componente CadastroAluno.
+ * 
+ * @interface CadastroAlunoProps
+ * @property {string} [classname] - Classe CSS opcional para estilização do componente.
+ */
 interface CadastroAlunoProps {
     classname?: string;
 }
 
-function CadastroAluno({ classname }: CadastroAlunoProps) {
+/**
+ * Componente de cadastro de aluno.
+ * 
+ * @param {CadastroAlunoProps} props - Propriedades do componente.
+ * @param {string} props.classname - Classe CSS para estilização do componente.
+ * 
+ * @returns {JSX.Element} - Elemento JSX representando o formulário de cadastro de aluno.
+ * 
+ * @component
+ * 
+ * @example
+ * <CadastroAluno classname="meu-estilo" />
+ * 
+ * @remarks
+ * Este componente contém um formulário para cadastrar um aluno, incluindo campos para nome, sobrenome, data de nascimento, endereço, email, celular e foto. 
+ * A foto é opcional e pode ser enviada como um arquivo. Os dados são enviados para o servidor utilizando a função `AlunoRequests.cadastrarAluno`.
+ * 
+ * @function
+ * @name CadastroAluno
+ */
+function CadastroAluno({ classname }: CadastroAlunoProps): JSX.Element {
     const [formData, setFormData] = useState<{
         nome: string;
         sobrenome: string;
@@ -27,7 +53,11 @@ function CadastroAluno({ classname }: CadastroAlunoProps) {
         foto: null
     });
 
-    // Função para atualizar campos de texto
+    /**
+     * Manipula a mudança de valor nos campos de entrada do formulário.
+     *
+     * @param event - O evento de mudança do React gerado pelo campo de entrada.
+     */
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormData({
@@ -46,6 +76,14 @@ function CadastroAluno({ classname }: CadastroAlunoProps) {
     //     }
     // };
 
+    /**
+     * Manipula a mudança de arquivo no input de upload de arquivos.
+     *
+     * @param {any} event - O evento de mudança do input de arquivo.
+     * 
+     * Se um arquivo for selecionado, ele será adicionado ao estado `formData` 
+     * na propriedade `foto`.
+     */
     const handleFileChange = (event: any) => {
         const file = event.target.files[0];
         if (file) {
@@ -54,6 +92,20 @@ function CadastroAluno({ classname }: CadastroAlunoProps) {
     };
 
 
+    /**
+     * Função assíncrona que lida com o envio do formulário de cadastro de aluno.
+     * 
+     * @param {React.FormEvent<HTMLFormElement>} event - O evento de envio do formulário.
+     * 
+     * A função previne o comportamento padrão do formulário, cria um objeto FormData
+     * com os dados do aluno e, se houver uma foto, adiciona-a ao FormData. Em seguida,
+     * tenta enviar os dados para o servidor utilizando a função `cadastrarAluno` de `AlunoRequests`.
+     * 
+     * Se o cadastro for bem-sucedido, exibe uma mensagem de sucesso e recarrega a página.
+     * Caso contrário, exibe uma mensagem de erro.
+     * 
+     * @throws {Error} - Lança um erro se houver falha no cadastro do aluno.
+     */
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
