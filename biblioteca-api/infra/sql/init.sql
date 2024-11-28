@@ -27,7 +27,7 @@ CREATE TABLE aluno (
     email VARCHAR(80),
     celular VARCHAR(20) NOT NULL,
     senha VARCHAR(255) NOT NULL,
-    nome_arquivo VARCHAR(255) DEFAULT 'uploads/default-profile.png',
+    nome_arquivo VARCHAR(255) DEFAULT 'uploads/users/default-profile.png',
     criado_em TIMESTAMP DEFAULT NOW()
 );
 
@@ -62,11 +62,11 @@ CREATE OR REPLACE FUNCTION gerar_nome_arquivo() RETURNS TRIGGER AS $$
 BEGIN
     -- Verificar se nome_arquivo está vazio ou nulo, caso contrário, usa o valor padrão
     IF NEW.nome_arquivo IS NULL OR NEW.nome_arquivo = '' THEN
-        NEW.nome_arquivo := 'uploads/default-profile.png';  -- Valor padrão
+        NEW.nome_arquivo := 'uploads/users/default-profile.png';  -- Valor padrão
     END IF;
     -- Gerar o nome de arquivo baseado no RA se o nome_arquivo for o padrão
-    IF NEW.ra IS NOT NULL AND NEW.nome_arquivo = 'uploads/default-profile.png' THEN
-        NEW.nome_arquivo := 'uploads/' || NEW.ra || '-profile.png';
+    IF NEW.ra IS NOT NULL AND NEW.nome_arquivo = 'uploads/users/default-profile.png' THEN
+        NEW.nome_arquivo := 'uploads/users/' || NEW.ra || '-profile.png';
     END IF;
     RETURN NEW;
 END;
@@ -88,6 +88,7 @@ CREATE TABLE livro (
     quant_total INTEGER NOT NULL,
     quant_disponivel INTEGER NOT NULL,
     valor_aquisicao DECIMAL(10,2),
+    imagem_capa VARCHAR(255) DEFAULT 'uploads/livros/book-default.png',
     status_livro_emprestado VARCHAR(20)
 );
 

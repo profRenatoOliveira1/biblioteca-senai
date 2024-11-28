@@ -12,7 +12,7 @@ export class Aluno {
     private endereco: string;
     private email: string;
     private celular: string;
-    private foto: string = 'uploads\\default-profile.png';
+    private foto: string = 'uploads\\users\\default-profile.png';
 
     /**
      * Construtor da classe Aluno

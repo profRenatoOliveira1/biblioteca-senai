@@ -102,7 +102,7 @@ class AlunoController extends Aluno {
                 dadosRecebidos.celular              
             );
 
-            novoAluno.setFoto(fotoPath ? fotoPath : 'uploads\\default-profile.png');
+            novoAluno.setFoto(fotoPath ? fotoPath : 'uploads\\users\\default-profile.png');
 
             // Chama o método para persistir o aluno no banco de dados
             const result = await Aluno.cadastrarAluno(novoAluno);

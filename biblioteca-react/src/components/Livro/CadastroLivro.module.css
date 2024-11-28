@@ -1,4 +1,4 @@
-.formCadastroAluno {
+.formCadastroLivro {
     display: flex;
     width: 90%;
     height: 70vh;
@@ -11,21 +11,20 @@
     background-color: var(--gray-color);
 }
 
-.doubleInput {
-    width: 80%;
+.ctnFormulario {
     display: flex;
-    gap: 10px;
-    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
 }
 
-.inputGroup {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.inputGroup input {
-    height: 5vh;
+.imagemCapa {
+    width: 200px;
+    height: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin: 1rem;
+    cursor: pointer;
 }
 
 .inputFields {
@@ -38,7 +37,8 @@
     align-items: center;
 }
 
-.doubleInput input {
+.inputFields input,
+.inputFields select {
     width: 100%;
     padding: 5px;
     box-sizing: border-box;
@@ -46,8 +46,23 @@
     border-radius: 5px;
 }
 
+.doubleInput {
+    width: 80%;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+}
+
+.painelEsquerdo,
+.painelDireito {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+}
+
 .btnEnviar {
-    width: 75%;
+    width: 75%!important;
     height: 6vh;
     margin-top: 2rem;
     font-size: 1.5rem;
@@ -56,25 +71,4 @@
     color: var(--white-color);
     border: none;
     border-radius: 5px;
-}
-
-.ctnFormulario {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem 0;
-}
-
-.fotoPerfil {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-}
-
-.ctnPerfilAluno label {
-    cursor: pointer;
-    color: var(--primary-color);
-    font-size: 1.5rem;
 }

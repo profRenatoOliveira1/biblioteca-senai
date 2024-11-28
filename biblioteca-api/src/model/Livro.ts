@@ -13,6 +13,7 @@ export class Livro {
     private quantDisponivel: number;
     private valorAquisicao: number;
     private statusLivroEmprestado: string;
+    private capaLivro: string = 'uploads\\livros\\book-default.png';
 
      /**
      * Construtor da classe Livro
@@ -212,6 +213,23 @@ export class Livro {
         this.statusLivroEmprestado = _statusLivroEmprestado;
     }
 
+    /**
+     * Retorna a capa do livro
+     * @returns capaLivro: string
+     */
+    public getCapaLivro(): string {
+        return this.capaLivro;
+    }
+
+    /**
+     * Atribui o parâmetro ao atributo capaLivro
+     * 
+     * @param _capaLivro : string
+     */
+    public setCapaLivro(_capaLivro: string): void {
+        this.capaLivro = _capaLivro;
+    }
+
     // MÉTODO PARA ACESSAR O BANCO DE DADOS
     // CRUD Create - READ - Update - Delete
 
@@ -271,7 +289,7 @@ export class Livro {
         
         try {
             const queryInsertLivro = `
-                INSERT INTO Livro (titulo, autor, editora, ano_publicacao, isbn, quant_total, quant_disponivel, valor_aquisicao, status_livro_emprestado)
+                INSERT INTO Livro (titulo, autor, editora, ano_publicacao, isbn, quant_total, quant_disponivel, valor_aquisicao, status_livro_emprestado, imagem_capa)
                 VALUES (
                     '${livro.getTitulo().toUpperCase()}',
                     '${livro.getAutor().toUpperCase()}',
@@ -281,7 +299,8 @@ export class Livro {
                     '${livro.getQuantTotal()}',
                     '${livro.getQuantDisponivel()}',
                     '${livro.getValorAquisicao()}',
-                    '${livro.getStatusLivroEmprestado().toUpperCase()}'
+                    '${livro.getStatusLivroEmprestado().toUpperCase()}',
+                    '${livro.getCapaLivro()}'
                 )
                 RETURNING id_livro;`;
 

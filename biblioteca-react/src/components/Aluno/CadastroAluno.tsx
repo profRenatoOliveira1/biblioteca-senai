@@ -68,18 +68,21 @@ function CadastroAluno({ classname }: CadastroAlunoProps) {
             payload.append('foto', formData.foto); // Adiciona o arquivo ao FormData
         }
 
-        // Substituir pelo endpoint real da sua API
-        const response = await AlunoRequests.cadastrarAluno(payload);
-
-        // verifica se a resposta foi bem sucedida
-        response ? alert('Aluno cadastrado com sucesso!') : alert('Erro ao cadastrar aluno!');
+        try {
+            const response = await AlunoRequests.cadastrarAluno(payload);
+            response ? alert('Aluno cadastrado com sucesso!') : alert('Erro ao cadastrar aluno!');
+            window.location.reload();
+        } catch (error) {
+            console.error(error);
+            alert('Erro ao cadastrar aluno!');
+        }
     };
 
     return (
         <div className={classname}>
             <form onSubmit={handleSubmit} className={estilo.formCadastroAluno}>
                 <h1>Cadastro Aluno</h1>
-                <div className={estilo.inputFoto}>
+                <div className={estilo.ctnFormulario}>
                     <label htmlFor="fotoUpload">
                         <img
                             src={formData.foto ? URL.createObjectURL(formData.foto) : imagemPadrao}
@@ -105,6 +108,7 @@ function CadastroAluno({ classname }: CadastroAlunoProps) {
                                         placeholder="Insira o nome"
                                         value={formData.nome}
                                         onChange={handleChange}
+                                        minLength={7}
                                     />
                                 </label>
                             </div>
@@ -117,6 +121,7 @@ function CadastroAluno({ classname }: CadastroAlunoProps) {
                                         placeholder="Insira o sobrenome"
                                         value={formData.sobrenome}
                                         onChange={handleChange}
+                                        minLength={7}
                                     />
                                 </label>
                             </div>
@@ -130,6 +135,8 @@ function CadastroAluno({ classname }: CadastroAlunoProps) {
                                         name="data_nascimento"
                                         value={formData.data_nascimento}
                                         onChange={handleChange}
+                                        min="1950-01-01"
+                                        max={new Date(new Date().setFullYear(new Date().getFullYear() - 15)).toISOString().split('T')[0]}
                                     />
                                 </label>
                             </div>
@@ -156,6 +163,7 @@ function CadastroAluno({ classname }: CadastroAlunoProps) {
                                         placeholder='Informe o endereço'
                                         value={formData.endereco}
                                         onChange={handleChange}
+                                        minLength={7}
                                     />
                                 </label>
                             </div>
@@ -168,6 +176,7 @@ function CadastroAluno({ classname }: CadastroAlunoProps) {
                                         placeholder='Informe o endereço de e-mail'
                                         value={formData.email}
                                         onChange={handleChange}
+                                        minLength={7}
                                     />
                                 </label>
                             </div>

@@ -1,5 +1,5 @@
 import { Livro } from "../model/Livro";
-import { Request, Response} from "express";
+import { Request, Response } from "express";
 
 interface LivroDTO {
     titulo: string;
@@ -44,11 +44,14 @@ class LivroController extends Livro {
     static async cadastrar(req: Request, res: Response) {
         try {
             const dadosRecebidos: LivroDTO = req.body;
-            
+
+            // verifica se a foto foi enviada
+            const fotoPath = req.file ? req.file.path : null;
+
             // Instanciando objeto Livro
             const novoLivro = new Livro(
                 dadosRecebidos.titulo,
-                dadosRecebidos.autor, 
+                dadosRecebidos.autor,
                 dadosRecebidos.editora,
                 (dadosRecebidos.anoPublicacao ?? 0).toString(),
                 dadosRecebidos.isbn ?? '',
@@ -57,6 +60,8 @@ class LivroController extends Livro {
                 dadosRecebidos.valorAquisicao ?? 0,
                 dadosRecebidos.statusLivroEmprestado ?? 'Disponível'
             );
+
+            novoLivro.setCapaLivro(fotoPath ? fotoPath : 'uploads\\livros\\default-book.png');
 
             // Chama o método para persistir o livro no banco de dados
             const result = await Livro.cadastrarLivro(novoLivro);
@@ -73,17 +78,17 @@ class LivroController extends Livro {
         }
     }
 
-     /**
-     * Remove um aluno.
-     * @param req Objeto de requisição HTTP com o ID do aluno a ser removido.
-     * @param res Objeto de resposta HTTP.
-     * @returns Mensagem de sucesso ou erro em formato JSON.
-     */
-     static async remover(req: Request, res: Response): Promise<Response> {
+    /**
+    * Remove um aluno.
+    * @param req Objeto de requisição HTTP com o ID do aluno a ser removido.
+    * @param res Objeto de resposta HTTP.
+    * @returns Mensagem de sucesso ou erro em formato JSON.
+    */
+    static async remover(req: Request, res: Response): Promise<Response> {
         try {
-            const idLivro= parseInt(req.query.idLivro as string);
+            const idLivro = parseInt(req.query.idLivro as string);
             const result = await Livro.removerLivro(idLivro);
-            
+
             if (result) {
                 return res.status(200).json('Livro removido com sucesso');
             } else {
@@ -95,7 +100,7 @@ class LivroController extends Livro {
             return res.status(500).send("error");
         }
     }
-    
+
     /**
      * Método para atualizar o cadastro de um livro.
      * 
@@ -106,11 +111,11 @@ class LivroController extends Livro {
     static async atualizar(req: Request, res: Response): Promise<Response> {
         try {
             const dadosRecebidos: LivroDTO = req.body;
-            
+
             // Cria uma nova instância de Livro com os dados atualizados
             const livro = new Livro(
                 dadosRecebidos.titulo,
-                dadosRecebidos.autor, 
+                dadosRecebidos.autor,
                 dadosRecebidos.editora,
                 (dadosRecebidos.anoPublicacao ?? 0).toString(),
                 dadosRecebidos.isbn ?? '',

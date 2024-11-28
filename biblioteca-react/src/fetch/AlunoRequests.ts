@@ -33,11 +33,12 @@ class AlunoRequests {
     async cadastrarAluno(data: FormData): Promise<boolean> {
         const url = this.serverUrl + this.routeNovoAluno;
 
-        console.log(url, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: data
-        });
+        // ESPERAR UM TEMPO ANTES DE REMOVER O COMENTÁRIO ABAIXO
+        // console.log(url, {
+        //     method: 'POST',
+        //     mode: 'no-cors',
+        //     body: data
+        // });
 
         const response = await fetch(url, {
             method: 'POST',

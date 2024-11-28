@@ -4,7 +4,7 @@ import AlunoController from "./controller/AlunoController";
 import LivroController from "./controller/LivroController";
 import EmprestimoController from "./controller/EmprestimoController";
 import { Authentication } from "./util/Authentication";
-import upload from "./util/Utilitarios";
+import { uploadUserPhoto, uploadBookPhoto } from "./util/Utilitarios";
 
 const router = express.Router();
 
@@ -15,14 +15,14 @@ router.get('/', (req, res) => {
 // CRUD Aluno
 router.get(SERVER_ROUTES.LISTAR_ALUNOS, AlunoController.todos);
 router.get(SERVER_ROUTES.LISTAR_ALUNO_RA, AlunoController.alunoRA);
-router.post(SERVER_ROUTES.NOVO_ALUNO, upload.single('foto'), AlunoController.cadastrar);
+router.post(SERVER_ROUTES.NOVO_ALUNO, uploadUserPhoto.single('foto'), AlunoController.cadastrar);
 router.delete(SERVER_ROUTES.REMOVER_ALUNO, AlunoController.remover);
 router.put(SERVER_ROUTES.ATUALIZAR_ALUNO, AlunoController.atualizar);
 router.put(SERVER_ROUTES.ATUALIZAR_SENHA_ALUNO, AlunoController.atualizarSenha);
 
 //CRUD Livro
 router.get(SERVER_ROUTES.LISTAR_LIVROS, LivroController.todos);
-router.post(SERVER_ROUTES.NOVO_LIVRO, LivroController.cadastrar);
+router.post(SERVER_ROUTES.NOVO_LIVRO, uploadBookPhoto.single('imagemCapa'), LivroController.cadastrar);
 router.delete(SERVER_ROUTES.REMOVER_LIVRO, LivroController.remover);
 router.put(SERVER_ROUTES.ATUALIZAR_LIVRO, LivroController.atualizar);
 
